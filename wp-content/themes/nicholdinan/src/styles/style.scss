@@ -1,0 +1,53 @@
+/*
+Theme Name: NicholDinan
+Author: James Oxley-Shaw
+Description: Art of Nichol Dinan. Portfolio website.
+Version: 2.0
+*/
+
+/**
+ * Vendors
+ */
+ @import 'vendor/susy/sass/susy';
+ @import 'vendor/normalize';
+ @import 'vendor/sanitize';
+ @import 'vendor/mq-sass/mq-sass';
+ 
+ /**
+  * Fonts
+  */
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700');
+ @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,400i,600,900');
+
+ 
+ /**
+  * Breakpoints
+  */
+ $mq-breakpoints: (
+     mobile:       321px,
+     phablet:      580px,
+     tablet:       840px,
+     largeTablet:  965px,
+     desktop:      1030px,
+     big:          1200px,
+     bigger:       1400px,
+     wide:         1600px,
+     max:          2000px
+ );
+ $mq-show-breakpoints: (mobile, phablet, tablet, desktop, big, bigger, wide, max);
+ 
+ /**
+  * Styles
+  */
+
+  // base styles
+ @import 'partials/variables'; 
+ @import 'partials/base-styles';
+ @import 'partials/header';
+ @import 'partials/footer';
+ @import 'partials/404';
+ // page styles 
+ @import 'partials/homepage';
+ @import 'partials/gallery';
+ @import 'partials/about';
+ @import 'partials/contact_form';

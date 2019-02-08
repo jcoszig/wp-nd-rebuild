@@ -1,0 +1,33 @@
+.main-footer {
+    text-align: center;
+    padding-top: 0;
+    .footer-wrap {
+        display:flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-top: 1rem;
+        border-top: 1px solid black;
+        span:first-child {
+            padding-right: 3px;
+            &::after {
+                content: "|";
+                height: auto;
+                width: auto;
+                @include mq( $until: phablet){ content: ""; }
+            }
+        }
+        @include mq( $until: phablet){
+            span:last-child {
+                width: 100%;
+            }
+        }
+    }
+}
+
+body.home {
+    .main-footer { display: none; }
+}
+body.page-template-about {
+    .main-footer { padding: 0 0 1rem; }
+}

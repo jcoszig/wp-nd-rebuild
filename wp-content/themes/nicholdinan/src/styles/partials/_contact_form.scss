@@ -1,0 +1,252 @@
+/* Local Variables */
+@import url('https://fonts.googleapis.com/css?family=Khand');
+
+$contact-background-darker: #b7b7b5; // based off of PS current image values. Subject to change.
+$contact-background-lighter: #c1c3c2; // based off of PS current image values. Subject to change.
+$contact-input-blue: rgba(lightblue, 0.2); //lightblue $contact-input-blue
+
+/* media queries:
+@mixin tablet() {
+	@media(min-width: $tablet){
+		@content;
+	}
+}
+@include mq($from: tablet){
+    
+}
+
+@mixin desktop() {
+	@media(min-width: $desktop){
+		@content;
+	}
+}
+@include mq($from: desktop){
+    
+}
+
+@mixin desktopLarge() {
+	@media(min-width: $desktop){
+		@content;
+	}
+}
+@include mq($from: big){
+    
+}
+*/
+
+body.page-template-about {
+    .form-background {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 100vh;
+        max-width: 1400px;
+        margin: 0 auto;
+        background: url(../../images/contact_form_cropped.jpg);
+        background-repeat: no-repeat;
+        background-position: bottom left;
+        background-size: 100%;
+        // taller screens
+        @include mq($until: 750px){
+            background: $contact-background-darker;
+        }
+        @include mq($from: 750px, $until: tablet){
+            background-position: top;
+        }
+        @include mq($from: tablet, $until: largeTablet){
+            background-position: 0 50%;
+        }
+        @include mq($from: largeTablet ){
+            background-position: 0 60%;
+        }
+        // shorter screens (laptops)
+
+    }
+    // C:\wamp64\www\nicholdinan\wp-content\themes\nicholdinan\dist\styles\style.css
+    // C:\wamp64\www\nicholdinan\wp-content\themes\nicholdinan\images\contact_form.jpg
+    .form-wrap {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        padding: 2rem 2rem 1rem 1rem;
+        width: 90%;
+        @include mq($from: desktop){
+            width: 90%;
+        }
+        @include mq($from: big){
+            width: 80%;
+        }
+        .wpcf7-form {
+            display: flex;
+            flex-direction: column;
+            @include mq($from: desktop){
+                @include non-ie-browser {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-template-rows: 1fr 1fr 1fr 4fr;
+                    // min-height: 0;
+                }
+            }
+            // All sections
+            p, div { font-family: 'Khand', sans-serif; }
+            p {
+                border-top: 1px solid $off-black;
+                margin: 0;
+                color: #2B2B2B;
+                // All labels 
+                .form, &:nth-child(8) { 
+                    input, textarea {
+                        width: 95%; // account for slight left margin
+                        height: 3rem;
+                        background: $contact-input-blue;
+                        border: none;
+                        outline: 0;
+                        text-align: left;
+                        &:not(.form-submit){ margin-left: 0.5rem; }
+                    }
+                }
+                // error message 
+                &:nth-child(2){
+                    border-top: none;
+                    grid-column: 2 / 4;
+                    grid-row: 1 / 2;
+                }
+                // 'Contact'
+                &:nth-child(3) {
+                    text-align: center;
+                    grid-column: 1 / 2;
+                    grid-row: 1 / 4;
+                    display: flex;
+                    align-items: center;
+                    border-top: none;
+                    @include mq($from: desktop){
+                        @include non-ie-browser {
+                            border-right: solid 1px $off-black;
+                        }
+                    }
+                    .form-contact {
+                        width: 100%;
+                        font-size: 3rem;
+                        // padding: 0.5rem 0;
+                        @include mq($from: desktop){
+                            font-size: 4rem;
+                            letter-spacing: 0.15rem;
+                        }
+                    }
+                }
+                // Name
+                &:nth-child(4) {
+                    @include mq($until: desktop ){
+                        border-top: none;
+                    }
+                    @include mq($from: desktop){
+                        grid-column: 2 / 3;
+                        grid-row: 2 / 3;
+                    }
+                }
+                // Email
+                &:nth-child(5) {
+                    @include mq($from: desktop){
+                        grid-column: 3 / 4;
+                        grid-row: 2 / 3;
+                        @include non-ie-browser{
+                            border-left: solid 1px $off-black;
+                        }
+                    }
+                }
+                // Company
+                &:nth-child(6) {
+                    @include mq($from: desktop){
+                        grid-column: 2 / 4;
+                        grid-row: 3 / 4;
+                    }
+                }
+                // Message
+                &:nth-child(7) {
+                    border-bottom: 1px solid $off-black;
+                    min-height: 4.625rem;
+                    @include non-ie-browser {
+                        @include mq($from: desktop){
+                            grid-column: 2 / 4;
+                            grid-row: 4 / 5;
+                            border-bottom: none;
+                        }
+                    }
+                    &.focused { 
+                        transition: all 0.5s linear;
+                        height: 200px;
+                    }
+                    .wpcf7-textarea {
+                        max-height: 11.25rem;
+                        padding-top: 10px; 
+                        resize: vertical;
+                        @include non-ie-browser {
+                            @include mq($from: desktop) {
+                                max-height: 100%;
+                            }
+                        }
+                        &.focused {
+                            &::placeholder {
+                                transition: all 0.3s linear;
+                                letter-spacing: 3.125rem;
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }
+                // Submit button
+                &:nth-child(8) {
+                    margin-top: 1.25rem;
+                    border: 1px solid $off-black;
+                    height: 4.25rem;
+                    @include non-ie-browser {
+                        @include mq($from: desktop){
+                            grid-column: 1 / 2;
+                            grid-row: 4 / 5;
+                            margin: 0;
+                            height: 100%;
+                            border-bottom: none;
+                            border-left: none;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                    .form-submit {
+                        background: $contact-input-blue;
+                        border: none;
+                        font-weight: 600;
+                        text-align: center;
+                        text-transform: uppercase;
+                        height: 100%;
+                        width: 100%;
+                        &:hover {
+                            background: darken($contact-input-blue, 10%);
+                            cursor: pointer;
+                        }
+                        @include non-ie-browser {
+                            @include mq($from: desktop){
+                              height: 4.375rem;
+                              width: 90%;
+                              border: solid 1px $off-black;
+                            }
+                        }
+                    }
+                }
+            }
+            // wpcf7-display-none wpcf7-validation-errors
+            .wpcf7-response-output {
+                color: red;
+                border: none;
+                grid-column: 2 / 4;
+                grid-row: 1 / 2;
+            }
+            .wpcf7-not-valid-tip {
+                color: red;
+                text-transform: italic;
+                margin-left: 0.5rem;
+            }
+        }
+    }
+}
+

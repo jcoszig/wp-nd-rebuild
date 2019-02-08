@@ -1,0 +1,15 @@
+{
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],	
+	"require": {
+		"wpackagist-plugin/wordfence": "7.0.5",
+		"wpackagist-plugin/google-captcha": "dev-trunk",
+        "wpackagist-plugin/meta-box": "dev-trunk",
+        "wpackagist-plugin/adminimize": "dev-trunk",
+        "wpackagist-plugin/wp-migrate-db": "dev-trunk"
+	}
+}

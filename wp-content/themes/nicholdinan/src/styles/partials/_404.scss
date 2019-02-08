@@ -1,0 +1,269 @@
+/*Variables*/
+$text-wrap-height: 300px;
+$text-color: #db1515;
+$dark-color: darken($text-color, 40%);
+$line-color: rgba(0,0,0,0.3);
+$frame-rate: 60;
+$synced-animation: 10s;
+$blur-span-ani-filter: blur(2px) saturate(120%) brightness(6);
+$blur-span-ani-txt-shadow: 
+    0px -2px 10px rgba($dark-color, 1),
+    0px 2px 10px rgba($dark-color,1),
+    2px 0px 10px rgba($dark-color,1),
+    -2px 0px 10px rgba($dark-color,1);
+$blur-main-ani-filter: blur(3px) saturate(120%) brightness(6);
+$blur-main-ani-txt-shadow: 
+    0px -5px 20px rgba($dark-color, 1),
+    0px 5px 20px rgba($dark-color,1),
+    5px 0px 20px rgba($dark-color,1),
+    -5px 5px 20px rgba($dark-color,1);
+// Gap distances dependant on number of lines
+$num-lines: 15;
+$gap-i: 100% / $num-lines * 1;
+$gap-ii: 100% / $num-lines * 2;
+$gap-iii: 100% / $num-lines * 3;
+$gap-iv: 100% / $num-lines * 4;
+$gap-v: 100% / $num-lines * 5;
+$gap-vi: 100% / $num-lines * 6;
+$gap-vii: 100% / $num-lines * 7;
+$gap-viii: 100% / $num-lines * 8;
+$gap-ix: 100% / $num-lines * 9;
+$gap-x: 100% / $num-lines * 10;
+$gap-xi: 100% / $num-lines * 11;
+$gap-xii: 100% / $num-lines * 12;
+$gap-xiii: 100% / $num-lines * 13;
+$gap-xiv: 100% / $num-lines * 14;
+$gap-xv: 100% / $num-lines * 15;
+
+$gap-list: $gap-i $gap-ii $gap-iii $gap-iv $gap-v $gap-vi $gap-vii $gap-viii $gap-ix $gap-x $gap-xi $gap-xii $gap-xiii $gap-xiv $gap-xv;
+
+
+body.error404 {
+    .container-404-wrap {
+        @include centreScreen;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* Styling*/
+    .container-404 {
+        height: $text-wrap-height;
+        width: 350px;
+        overflow: hidden;
+        animation: turn-on $synced-animation 1;
+    }
+    .static {
+        // animation: static 500ms steps(4) infinite;
+        animation: static 500ms infinite;
+        background-size: 55vw;
+        background: url('../../images/whitenoise.png');
+        border: solid 1px grey;
+        border-radius: 15px;
+    }
+    .text-wrap {
+        position: relative;
+        height: $text-wrap-height;
+        width: 350px;
+        border: solid 1px red;
+        overflow: hidden;
+        animation: track 5ms infinite;
+    .txt-main, .txt-span {
+        text-align: center;
+        color: $text-color;
+        font-weight: bold;
+        font-family: $header-font;
+    }
+    .txt-main { 
+        position: relative;
+        font-size: 6rem;
+        margin-bottom: 0;
+        &::after, 
+        &::before { 
+            content: attr(data-text);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            font-size: 6rem;
+        }
+        &::after { 
+            color: $text-color;
+            filter: blur(2px);
+            left: 15px;
+            background: url('../../images/whitenoise.png');
+            animation: shift $synced-animation linear infinite;
+        }
+        &::before { 
+            z-index: -1;
+            color: blue;
+        }
+    }
+    .txt-span { 
+        position: relative;
+        font-size: 2rem;
+        height: 2rem;
+        letter-spacing: 0.2rem;
+        &::after, 
+        &::before { 
+            content: attr(data-text);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            font-size: 2rem;
+        }
+        &::after { 
+            color: $text-color;
+            filter: blur(1px);
+            left: 10px;
+            background: url('../../images/whitenoise.png');
+            animation: shift2 $synced-animation linear infinite;
+        }
+        &::before { 
+            z-index: -1;
+            color: blue;
+        }
+    }
+    }
+
+    // Animations:
+    .txt-span.blur { 
+        animation: blur-ani-span $synced-animation infinite;
+    }
+    .txt-main.blur { 
+        animation: blur-ani-main $synced-animation infinite;
+    }
+
+    @each $percentage in $gap-list {
+        $i: index($gap-list, $percentage);
+        .line-#{$i} { 
+        top: $percentage;
+        }
+    }
+
+    .line {
+        display: block;
+        position: absolute;
+        z-index: 99;
+        height: 3px;
+        width: 100%;
+        background: $line-color;
+        filter: blur(1px);
+        // hack to create duplicate of each line above
+        box-shadow: 0px (-$text-wrap-height) 0px 0px $line-color,
+                    0px (-$text-wrap-height - 10px) 0px 0px $line-color;
+        /* Gets browser to utilize GPU */
+        transform: translate3d(0, 0, 0);
+        animation: scroll 10s linear infinite;
+        &::before {
+            content: '';
+            background: $line-color;
+            height: 2px;
+            width: 100%;
+            display: block;
+            position: absolute;
+            bottom: 10px;
+        }
+    }
+
+
+    @keyframes turn-on {
+    0% { 
+        clip-path: inset(148px 165px 148px 165px);
+        background: rgba(255, 255, 255, 0.9); 
+    }
+    2% { 
+        clip-path: inset(148px 0px 148px 0px);
+        background: rgba(255, 255, 255, 0.9); 
+    }
+    5% { 
+        clip-path: inset(0px 0px 0px 0px); 
+        background: rgba(255, 255, 255, 0); 
+    }
+    50% { background: rgba(255, 255, 255, 0); }
+    51% { background: rgba(255, 255, 255, 0.9); }
+    54% { background: rgba(255, 255, 255, 0); }
+    100% { background: rgba(255, 255, 255, 0); }
+    }
+
+    @keyframes shift {
+    0% { clip-path: inset(20px 0px 82px 0px); } 
+    45% { clip-path: inset(51px 0px 51px 0px); }
+    100% { clip-path: inset(82px 0px 20px 0px); }
+    }
+
+    @keyframes shift2 {
+    0% { clip-path: inset(0px 0px 36px 0px); }
+    55% { clip-path: inset(0px 0px 30px 0px); }
+    75% { clip-path: inset(27px 0px 0px 0px); }
+    76% { clip-path: inset(36px 0px 0px 0px); }
+    100% { clip-path: inset(36px 0px 0px 0px); }
+    }
+
+    @keyframes scroll {
+    0%{ transform: translateY(0); }
+    100% { transform: translateY($text-wrap-height);   } 
+    }
+
+    @keyframes static {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+    }
+
+    @keyframes blur-ani-main {
+    0%, 75% {
+        filter: none;
+        text-shadow: 0px 0px 0px rgba($text-color, 1);
+    }
+    87.5% {
+        filter: $blur-main-ani-filter;
+        text-shadow: $blur-main-ani-txt-shadow;
+    }
+    }
+
+    @keyframes blur-ani-span {
+    0%, 75% {
+        filter: none;
+        text-shadow: 0px 0px 0px rgba($text-color, 1);
+    }
+    87.5% {
+        filter: $blur-span-ani-filter;
+        text-shadow: $blur-span-ani-txt-shadow;
+    }
+    }
+
+    // Vibration effects
+    @keyframes track {
+    40% { 	
+            opacity:1; 
+            top:0; 
+            left:0;  
+            transform:scale(1,1);  
+            transform:skew(0,0);
+        }
+    41% { 	
+            opacity:0.8; 
+            top:0px; 
+            left:-10px; 
+            transform:scale(1,1.2);  
+            transform:skew(5deg,0);
+        }
+    42% { 	
+            opacity:0.8; 
+            top:0px; 
+            left:10px; 
+            transform:scale(1,1.2);  
+            transform:skew(-8deg,0);
+        }
+    43% { 
+            opacity:1; 
+            top:0; 
+            left:0; 
+            transform:scale(1,1);  
+            transform:skew(0,0);
+        }
+    }
+
+}

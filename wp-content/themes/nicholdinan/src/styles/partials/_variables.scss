@@ -1,0 +1,59 @@
+
+// Widths
+$site-max-width: 1400px;
+$absolute-max-width: 2000px;
+$centered: 0 auto;
+$site-padding-mobile: 1rem;
+$site-padding-desktop: 2rem;
+
+// Fonts
+$global-font: 'Lora', serif;
+$header-font: 'Poppins', sans-serif;
+
+$header-font-size: 1.9em;
+$header-font-weight: 200;
+$content-weight: 100;
+
+// Colours
+$header-colour: #bfbfbf;
+$header-colour-opaque: rgba(191,191,191, 0.3);
+$brand-red: #e60020;
+$main-body-font: #888787;
+$white: #ffffff;
+$black: #333333;
+$off-black: #2B2B2B;
+$fine-line-colour: #ede9dd;
+
+// Header
+// font sizes:
+$logoFontSize : 2rem;
+$navFontSize : 1.2rem;
+
+//Homepage Z-index:
+$layer-top: 999;
+$layer-top-background : 998;
+$layer-landing-img: -1;
+$layer-slider-img: -2;
+
+
+
+// Mixins
+@mixin centreScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin boldHeader {
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+// Contact form
+// Detect Internet Explorer (CSS Grid)
+@mixin non-ie-browser() {
+    @supports (display: grid) {
+      @content;
+    }
+}

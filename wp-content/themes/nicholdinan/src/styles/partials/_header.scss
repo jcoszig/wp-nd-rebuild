@@ -1,0 +1,112 @@
+
+.main-header {
+  #menu-main-menu {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0;
+    padding-left: 0;
+    font-family: $header-font;
+    text-transform: uppercase;
+    @include mq( $until: tablet){
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    // Home 
+    .menu-item-home {
+      margin-right: auto;
+      span {
+        font-size: $logoFontSize;
+      }
+      & span:first-child {
+        font-weight: 100;
+      }
+      & span:last-child {
+        font-weight: 700;
+      }
+      @include mq( $until: tablet){
+        text-align: center;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+      @include mq( $until: phablet){
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+        span { font-size: 1.5rem; }
+      }
+    } 
+    a {
+      height: 2rem;
+      display: block;
+    }
+    // Gallery & About
+    & li:nth-child(2), & li:nth-child(3) {
+      @include boldHeader;
+      padding-right: 2rem;
+    }
+
+    & li:not(.menu-item-home){
+      font-size: $navFontSize;
+      @include mq( $until: tablet){
+        text-align: center;
+        padding: 0;
+        width: 6rem;
+      }
+      @include mq( $until: phablet){
+        font-size: 1rem;
+        width: 5rem;
+      }
+    }
+    // Gallery
+    & li:nth-child(2){} 
+    // About
+    & li:nth-child(3){} 
+    // Instagram
+    .menu-item-type-custom {
+      #instagram-logo {
+        height: 2rem;
+        width: auto;
+        // adjust for off centre SVG
+        position: relative;
+        bottom: 8px;
+        @include mq( $until: phablet){
+          height: 1.5rem;
+        }
+      }
+      &:hover #instagram-logo {
+        filter: invert(1);
+      }
+    } 
+  }
+}
+
+body.home {
+  .main-header {
+    #instagram-logo {
+      filter: invert(1);
+    }
+  }
+}
+
+body.page-template-gallery, body.page-template-about {
+  // Active page nav item (not main logo)
+  .main-header {
+    .current-menu-item a {
+      border-bottom: 0.5px solid rgb(0,0,0);
+    }
+  }
+}
+  
+  /* --------------------------
+    Other pages
+  --------------------------- */
+//   #instagram-logo {
+//     -webkit-filter: invert(0.5);
+//     filter: invert(0.5);
+//   }
+//   #menu-main-menu li:last-child:hover #instagram-logo {
+//     -webkit-filter: none;
+//     filter: none;
+// }
+
+
+
