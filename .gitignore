@@ -20,7 +20,7 @@ wp-content/themes/*
 .*
 ~*
 
-# ignore node dependency directories (used by grunt)
+# ignore node dependency directories (used by grunt/ gulp)
 node_modules/
 
 # ignore OS generated files
