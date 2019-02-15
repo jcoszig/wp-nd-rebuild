@@ -1,12 +1,52 @@
 body.page-template-gallery {
-    .timeline {
-        height: 100%;
-        width: 10vw;
-    }
-    .post-img {
-        width: 30vw;
-        img {
-            width: 100%;
+    .site-container {
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #eeeeee;
+            left: 50%;
+            margin-left: -1.5px;
         }
+    }
+    .gallery-timeline {
+        display: flex;
+        flex-wrap: wrap;
+        height: 90vh;
+        .timeline-section {
+            border: solid 1px grey; // temp
+            height: 100%;
+            width: 15%;
+            h2.timeline-year { 
+                width: 100%;
+                font-size: 3rem;
+                margin: 2.5rem 0 0;
+            }
+            .timeline-line {
+                height: 100%;
+                background: blue;
+                width: 3px;
+                margin-left: 50%;
+            }
+        }
+        .post-img {
+            width: 30vw;
+            img {
+                width: 100%;
+            }
+        }
+    }
+    // aside font styling
+    .timeline-title h2 {
+        width: 15%;
+        font-size: 2rem;
+    }
+    h2.timeline-year, .timeline-title h2 { 
+        color: $off-black;
+        text-align: center;
+        font-weight: bold;
+        letter-spacing: .2rem;
     }
 }
