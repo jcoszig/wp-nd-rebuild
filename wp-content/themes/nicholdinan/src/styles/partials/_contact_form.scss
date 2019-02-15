@@ -3,78 +3,92 @@
 
 $contact-background-darker: #b7b7b5; // based off of PS current image values. Subject to change.
 $contact-background-lighter: #c1c3c2; // based off of PS current image values. Subject to change.
-$contact-input-blue: rgba(lightblue, 0.2); //lightblue $contact-input-blue
+$contact-input: rgba($contact-background-lighter, 0.5); 
+$img-height-ratio: 1.036;
 
-/* media queries:
-@mixin tablet() {
-	@media(min-width: $tablet){
-		@content;
-	}
-}
-@include mq($from: tablet){
-    
-}
+// standard media queries
+$mobile:       321px;
+$phablet:      580px;
+$tablet:       840px;
+$largeTablet:  965px;
+$desktop:      1030px;
+$big:          1200px;
+$bigger:       1400px;
+$wide:         1600px;
+$max:          2000px;
 
-@mixin desktop() {
-	@media(min-width: $desktop){
-		@content;
-	}
-}
-@include mq($from: desktop){
-    
-}
-
-@mixin desktopLarge() {
-	@media(min-width: $desktop){
-		@content;
-	}
-}
-@include mq($from: big){
-    
-}
-*/
-
+/* Styling */
 body.page-template-about {
     .form-background {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         min-height: 100vh;
-        max-width: 1400px;
+        height: 100vw * $img-height-ratio; 
+        max-height: $site-max-width * $img-height-ratio;
+        max-width: $site-max-width;
         margin: 0 auto;
         background: url(../../images/contact_form_cropped.jpg);
         background-repeat: no-repeat;
         background-position: bottom left;
         background-size: 100%;
         // taller screens
+
         @include mq($until: 750px){
             background: $contact-background-darker;
+            min-height: 0;
+            height: auto;
+            padding-top: 3rem;
         }
-        @include mq($from: 750px, $until: tablet){
-            background-position: top;
+        @include mq($from: 750px, $until: bigger){
+            margin-top: -35%;
         }
-        @include mq($from: tablet, $until: largeTablet){
-            background-position: 0 50%;
+        @include mq($from: desktop, $until: big ){
+            background-position: 0 150%;
+            // margin-top: -15%;
         }
-        @include mq($from: largeTablet ){
-            background-position: 0 60%;
+        @include mq($from: big, $until: bigger ){
+            background-position: 0 300%;
         }
-        // shorter screens (laptops)
+        @include mq($from: bigger){ 
+            margin-top: -27rem;
+            background-position: 0 350%;
+        }
+
+        // shorter screens (laptops) - note: uses custom media queries.
+        @media(max-height: 700px) and (min-width: 750px){
+            margin-top: -10%;
+        }
+        @media(max-height: 700px) and (min-width: $largeTablet){
+            background-position: 0 150%;
+        }
+        @media(max-height: 700px) and (min-width: $desktop){
+            margin-top: -15%;
+            background-position: 0 200%;
+        }
+        @media(max-height: 700px) and (min-width: $big){
+            margin-top: -20%;
+            background-position: 0 300%;
+        }
 
     }
-    // C:\wamp64\www\nicholdinan\wp-content\themes\nicholdinan\dist\styles\style.css
-    // C:\wamp64\www\nicholdinan\wp-content\themes\nicholdinan\images\contact_form.jpg
     .form-wrap {
         display: flex;
         position: relative;
         flex-direction: column;
         padding: 2rem 2rem 1rem 1rem;
-        width: 90%;
-        @include mq($from: desktop){
+        width: 100%;
+        margin-bottom: 3rem;
+        @include mq($until: 750px){
+            margin-bottom: auto;
+        }
+        @include mq($from: 750px, $until: big){
             width: 90%;
+            margin-bottom: 0;
         }
         @include mq($from: big){
             width: 80%;
+            margin-bottom: 0;
         }
         .wpcf7-form {
             display: flex;
@@ -98,7 +112,7 @@ body.page-template-about {
                     input, textarea {
                         width: 95%; // account for slight left margin
                         height: 3rem;
-                        background: $contact-input-blue;
+                        background: $contact-input;
                         border: none;
                         outline: 0;
                         text-align: left;
@@ -213,7 +227,7 @@ body.page-template-about {
                         }
                     }
                     .form-submit {
-                        background: $contact-input-blue;
+                        background: $contact-input;
                         border: none;
                         font-weight: 600;
                         text-align: center;
@@ -221,7 +235,7 @@ body.page-template-about {
                         height: 100%;
                         width: 100%;
                         &:hover {
-                            background: darken($contact-input-blue, 10%);
+                            background: darken($contact-input, 10%);
                             cursor: pointer;
                         }
                         @include non-ie-browser {

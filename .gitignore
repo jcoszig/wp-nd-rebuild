@@ -63,6 +63,7 @@ Thumbs.db
 !composer.json
 !.babelrc
 !gulpfile.babel
+!.babelrc
 !package.json
 !package-lock.json
 !.htaccess

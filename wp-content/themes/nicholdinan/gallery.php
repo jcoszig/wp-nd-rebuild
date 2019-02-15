@@ -3,10 +3,8 @@
     Template Name: Gallery
 */
 get_header();
-
 $prefix = '_ND_';
 $currentYear = date('Y');
-
 // Loop over current year, down to 2015 (oldest posts)
 while($currentYear >= 2015){ 
     
@@ -22,7 +20,6 @@ while($currentYear >= 2015){
             )
         ),
     ) );
-
     if ( $the_query->have_posts() ) : ?>
     <?php while ( $the_query->have_posts() ) : $the_query->the_post(); 
         // metabox values

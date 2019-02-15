@@ -3,6 +3,9 @@ body.page-template-about {
         padding-top: 2rem;
         .chol-img-contain {
             width: 50vw;
+            @include mq($until: tablet){
+                width: 100%;
+            }
         }
     }
 }
