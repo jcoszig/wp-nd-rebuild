@@ -9,9 +9,17 @@ $currentYear = date('Y'); ?>
                 <h2>Year</h2>
             </header>
 <?php // Loop over current year, down to 2015 (oldest posts)
-while($currentYear >= 2015){ 
+while($currentYear >= 2015){ ?>
+        <main class="gallery-timeline">
+            <aside class="timeline-section">
+                <h2 class="timeline-year">
+                    <?php echo ($currentYear != 2015 ? $currentYear : '2015<span> &amp; earlier </span>'); ?>
+                </h2>
+                <div class="timeline-line"></div>
+            </aside>
+            <section class="drawing-year <?php echo $currentYear; ?>">
 
-    // Find posts matching current year
+<?php // Find posts matching current year
     $the_query = new WP_Query(  array (
         'showposts' => -1,
         'post_type' => 'post',
@@ -24,7 +32,7 @@ while($currentYear >= 2015){
         ),
     ) ); 
 
-    if ( $the_query->have_posts() ) : 
+    // if ( $the_query->have_posts() ) : 
         $count = 0;
         while ( $the_query->have_posts() ) : $the_query->the_post(); 
             // metabox values
@@ -32,29 +40,21 @@ while($currentYear >= 2015){
             $orientation = rwmb_meta($prefix . 'art_orientation');
             $count++;
             ?>
-            <main class="gallery-timeline">
-            <?php if($count == 1) : ?>
-                <aside class="timeline-section">
-                    <h2 class="timeline-year">
-                        <?php echo ($currentYear != 2015 ? $currentYear : '2015<span> &amp; earlier </span>'); ?>
-                    </h2>
-                    <div class="timeline-line"></div>
-                </aside>
-            <?php endif; ?>
-                <section class="drawing-year <?php echo $currentYear; ?>">
+                <div class="post-img-wrap">
                     <h2><?php echo $title; ?></h2>
-                    <div class="post-img">
+                    <div class="post-img <?php foreach ( $orientation as $oriented ) : echo $oriented; ?>-parent">
                         <img 
-                            class="<?php foreach ( $orientation as $oriented ){ echo $oriented; }?>" 
+                            class="<?php echo $oriented; endforeach; ?>" 
                             href="<?php the_post_thumbnail('full'); ?>">
                             <a href="<?php the_permalink(); ?>"></a>
                         </img>
                     </div>
-                </section>
-            </main>
+                </div>
             <?php wp_reset_postdata(); 
         endwhile;
-        endif;
-        $currentYear--;
+        $currentYear--; ?>
+            </section>
+        </main>
+<?php
 }
 get_footer(); ?>

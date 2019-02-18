@@ -1,19 +1,12 @@
+// Local variables
+$year-margin: 2.5rem;
+
+// Styling
 body.page-template-gallery {
-    .site-container {
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background-color: #eeeeee;
-            left: 50%;
-            margin-left: -1.5px;
-        }
-    }
     .gallery-timeline {
         display: flex;
-        flex-wrap: wrap;
+        // flex-wrap: nowrap;
+        flex-direction: row;
         height: 90vh;
         .timeline-section {
             border: solid 1px grey; // temp
@@ -22,20 +15,25 @@ body.page-template-gallery {
             h2.timeline-year { 
                 width: 100%;
                 font-size: 3rem;
-                margin: 2.5rem 0 0;
-            }
+                // margin: 0 0 $year-margin;
+                margin: 0;
+                span {
+                    display: block;
+                    font-size: 1.5rem;
+                }
+            }   
             .timeline-line {
-                height: 100%;
-                background: blue;
+                height: calc(100% - #{ $year-margin } - 0.9rem);
+                background: $off-black;
                 width: 3px;
                 margin-left: 50%;
             }
         }
-        .post-img {
-            width: 30vw;
-            img {
-                width: 100%;
-            }
+        .drawing-year {
+            display: flex;
+            width: 85%;
+            .landscape-parent { width: 50%; }
+            .portrait-parent { height: 60vh; }
         }
     }
     // aside font styling
