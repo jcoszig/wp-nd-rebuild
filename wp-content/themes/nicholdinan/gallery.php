@@ -17,7 +17,7 @@ while($currentYear >= 2015){ ?>
                 </h2>
                 <div class="timeline-line"></div>
             </aside>
-            <section class="drawing-year <?php echo $currentYear; ?>">
+            <section class="images-section <?php echo $currentYear; ?>">
 
 <?php // Find posts matching current year
     $the_query = new WP_Query(  array (
@@ -40,14 +40,14 @@ while($currentYear >= 2015){ ?>
             $orientation = rwmb_meta($prefix . 'art_orientation');
             $count++;
             ?>
-                <div class="post-img-wrap">
+                <div class="post-img-wrap <?php foreach ( $orientation as $oriented ) : echo $oriented; ?>-parent">
                     <h2><?php echo $title; ?></h2>
-                    <div class="post-img <?php foreach ( $orientation as $oriented ) : echo $oriented; ?>-parent">
+                    <div class="post-img <?php echo $oriented ?>-wrap">
+                    <a href="<?php the_permalink(); ?>"><div class="hover-border"></div></a>
                         <img 
                             class="<?php echo $oriented; endforeach; ?>" 
-                            href="<?php the_post_thumbnail('full'); ?>">
-                            <a href="<?php the_permalink(); ?>"></a>
-                        </img>
+                            href="<?php the_post_thumbnail('full'); ?>"
+                        />
                     </div>
                 </div>
             <?php wp_reset_postdata(); 

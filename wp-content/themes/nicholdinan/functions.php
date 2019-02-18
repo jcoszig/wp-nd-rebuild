@@ -147,8 +147,9 @@ function prefix_meta_boxes( $meta_boxes ) {
                 'name'    => 'Orientation',
                 'type'    => 'checkbox_list',
                 'options' => array(
-                    'landscape'     => 'landscape',
-                    'portrait'      => 'Portrait',
+                    'landscape'         => 'landscape',
+                    'portrait'          => 'Portrait',
+                    'doublelandscape'   => 'Double Landscape',
                 ),
             ),
         ),
