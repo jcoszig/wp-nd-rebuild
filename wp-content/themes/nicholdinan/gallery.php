@@ -38,15 +38,30 @@ while($currentYear >= 2015){ ?>
             // metabox values
             $title = rwmb_meta($prefix . 'art_title'); 
             $orientation = rwmb_meta($prefix . 'art_orientation');
+            $image_id = get_post_thumbnail_id();
+            $img_src = wp_get_attachment_image_url( $image_id, 'full' );
+            $img_srcset = wp_get_attachment_image_srcset( $image_id, 'full' );
+            $img_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true ); 
             $count++;
             ?>
                 <div class="post-img-wrap <?php foreach ( $orientation as $oriented ) : echo $oriented; ?>-parent">
                     <h2><?php echo $title; ?></h2>
-                    <div class="post-img <?php echo $oriented ?>-wrap">
-                    <a href="<?php the_permalink(); ?>"><div class="hover-border"></div></a>
+                    <div class="post-img <?php echo $oriented; endforeach; ?>-wrap">
+                        <div class="hover-border">
+                            <a href="<?php the_permalink(); ?>"></a>
+                        </div>
                         <img 
-                            class="<?php echo $oriented; endforeach; ?>" 
-                            href="<?php the_post_thumbnail('full'); ?>"
+                            class="<?php echo $oriented; ?>" 
+                            src="<?php echo $img_src; ?>"
+                            srcset="<?php echo $img_srcset; ?>"
+                            sizes=<?php if( $oriented == "portrait"){
+                                echo "33vw";
+                            } elseif( $oriented == "landscape"){
+                                echo "50vw";
+                            } else { 
+                                echo "100vw";
+                            }?>
+                            alt="<?php echo esc_attr( $img_alt ); ?>"
                         />
                     </div>
                 </div>

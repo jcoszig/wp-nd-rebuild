@@ -5,7 +5,6 @@ $sliderSpeed = rwmb_meta( $prefix . 'slider_speed');
 $sliderSpeedFullCycle = $sliderSpeed * 3;
 
 $images = rwmb_meta( $prefix . 'home_images', array( 'size' => 'full' ) );
-$returnFirstImg = rwmb_meta( 'info', array( 'limit' => 1 ) );
 $firstImg = reset( $images );
 
 get_header() ?>
