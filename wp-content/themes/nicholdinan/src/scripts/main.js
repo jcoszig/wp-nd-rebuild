@@ -138,5 +138,22 @@
             });
             
         }; // end page detection
+
+/*---------------------------------------------------------------------------*/
+/*-------------------------Gallery Page: ------------------------------------*/
+/*---------------------------------------------------------------------------*/
+        if(currentPage.classList.contains('page-template-gallery') ){
+            
+            // Add dynamic class referring to how many posts found.
+            const imgsSection = document.querySelectorAll('.images-section');
+            const postImgWrap = document.querySelectorAll('.post-img-wrap');
+
+            imgsSection.forEach( (section)=>{
+                let postCount = section.childElementCount;
+                console.log( `section = ${section}. imgCount = ${postCount}` );
+                section.classList.add(`posts-${postCount}`)
+            });
+        }; 
+
     });
 }(jQuery));

@@ -60,6 +60,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }), _e3.addEventListener("blur", function () {
         "" == _e3.value.trim() && (_e3.classList.remove("focused"), _t2.classList.remove("focused"), _e3.style.height = "3rem");
       });
+    }if (s.classList.contains("page-template-gallery")) {
+      var _e4 = document.querySelectorAll(".images-section");document.querySelectorAll(".post-img-wrap");_e4.forEach(function (e) {
+        var t = e.childElementCount;console.log("section = " + e + ". imgCount = " + t), e.classList.add("posts-" + t);
+      });
     }
   });
 }(jQuery);
