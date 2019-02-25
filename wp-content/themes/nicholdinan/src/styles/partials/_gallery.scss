@@ -10,10 +10,10 @@ body.page-template-gallery {
         min-height: 100vh;
         .timeline-section {
             height: auto;
-            width: 15%;
+            width: 10%;
             h2.timeline-year { 
                 width: 100%;
-                font-size: 3rem;
+                font-size: 2.9rem;
                 margin: 0;
                 span {
                     display: block;
@@ -30,12 +30,18 @@ body.page-template-gallery {
         .images-section {
             display: flex;
             flex-wrap: wrap;
-            width: 85%;
-            margin: 3rem 0;
+            width: 90%;
+            margin: 3rem 0 0;
             .post-img-wrap {
                 display: flex;
                 flex-direction: column;
                 padding: 0.5rem;
+                h2 {
+                    font-size: 4.5rem;
+                    letter-spacing: .1em;
+                    margin-bottom: 1rem;
+                    margin-top: 0;
+                }
             // all image parents *-parent
                 .post-img { 
                     overflow: hidden;
@@ -52,16 +58,33 @@ body.page-template-gallery {
                 } 
             }
             .portrait-parent {
-                width: 33%;
-                .portrait-wrap { height: 60vh; }
+                width: 40%;
+                flex-direction: row;
+                .portrait-wrap { 
+                    max-height: 100vh;
+                    width: 90%;
+                }
+                // vertical text
+                h2 {
+                    writing-mode: vertical-lr;
+                    text-orientation: upright;
+                    text-transform: uppercase;
+                    font-size: 3rem;
+                    letter-spacing: 0.9rem;
+                    margin: 0 1.5rem 0 0; 
+                    width: 10%;
+                    position: relative;
+                    top: -10px;
+                }
             }
             .landscape-parent { width: 50%; }
             .doublelandscape-parent { width: 100%; }
         }
+
         // Styling unique to number of posts
         .posts-1 {
             justify-content: center;
-            align-items: center;
+            .landscape-parent { width: 41rem; }
         }
         .posts-3 {
             .post-img-wrap:nth-child(odd) {
@@ -87,8 +110,9 @@ body.page-template-gallery {
 
     // aside font styling
     .timeline-title h2 {
-        width: 15%;
+        width: 10%;
         font-size: 2rem;
+        margin-top: 4rem;
     }
     h2.timeline-year, .timeline-title h2 { 
         color: $off-black;
