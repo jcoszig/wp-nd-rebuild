@@ -1,6 +1,8 @@
 // Local variables
 $year-font-height: 3.44rem;
 $border-colour: darkred;
+$images-section-margin: 3rem;
+$image-title-height: 83px; // reference variable, not used in styling.
 
 // Styling
 body.page-template-gallery {
@@ -13,7 +15,7 @@ body.page-template-gallery {
             width: 10%;
             h2.timeline-year { 
                 width: 100%;
-                font-size: 2.9rem;
+                font-size: 2.5rem;
                 margin: 0;
                 span {
                     display: block;
@@ -23,7 +25,7 @@ body.page-template-gallery {
             .timeline-line {
                 height: calc(100% - #{ $year-font-height });
                 background: $off-black;
-                width: 3px;
+                width: 2px;
                 margin-left: 50%;
             }
         }
@@ -31,18 +33,21 @@ body.page-template-gallery {
             display: flex;
             flex-wrap: wrap;
             width: 90%;
-            margin: 3rem 0 0;
+            margin: $images-section-margin 0 0;
             .post-img-wrap {
                 display: flex;
                 flex-direction: column;
                 padding: 0.5rem;
                 h2 {
-                    font-size: 4.5rem;
+                    font-size: 5vw;
                     letter-spacing: .1em;
                     margin-bottom: 1rem;
                     margin-top: 0;
+                    @include mq($from: desktop){
+                        font-size: 3rem;
+                    }
                 }
-            // all image parents *-parent
+                // all image parents *-parent
                 .post-img { 
                     overflow: hidden;
                     position: relative;
@@ -56,9 +61,12 @@ body.page-template-gallery {
                         &:hover { box-shadow: inset 0 0 0 7px $border-colour; }
                     }
                 } 
+                // Positioning pattern
+                // &.image-1 {  }
             }
+
             .portrait-parent {
-                width: 40%;
+                width: 51%;
                 flex-direction: row;
                 .portrait-wrap { 
                     max-height: 100vh;
@@ -69,33 +77,57 @@ body.page-template-gallery {
                     writing-mode: vertical-lr;
                     text-orientation: upright;
                     text-transform: uppercase;
-                    font-size: 3rem;
+                    font-size: 2.2rem;
                     letter-spacing: 0.9rem;
                     margin: 0 1.5rem 0 0; 
                     width: 10%;
                     position: relative;
-                    top: -10px;
+                    top: -7px;
+                    @include mq($until: desktop ){
+                        font-size: 3vw;
+                        height: 90%; 
+                    }
+                }
+                // If more than 11 characters, override h2 styling with:
+                &.horizontal-text {
+                    flex-direction: column;
+                    h2 {
+                        width: 90%;
+                        height: auto;
+                        text-orientation: initial;
+                        writing-mode: initial;
+                        text-transform: initial;
+                        letter-spacing: .2rem;
+                    }
                 }
             }
-            .landscape-parent { width: 50%; }
+            .landscape-parent { 
+                width: 63%;
+                @include mq($until: phablet){
+                    width: 100%;
+                }
+            }
+            .square-parent {
+                .square-wrap {
+                    width: calc(100vh - #{ $images-section-margin } - #{ $image-title-height } );
+                }
+            }
             .doublelandscape-parent { width: 100%; }
         }
-
-        // Styling unique to number of posts
-        .posts-1 {
-            justify-content: center;
-            .landscape-parent { width: 41rem; }
+        // Positioning pattern
+        .left { margin-right: auto; }
+        .right { margin-left: auto; }
+        .center { 
+            margin: 0 auto;
+            position: relative;
+            right: 10%; // center image opposed to entire element.
         }
-        .posts-3 {
-            .post-img-wrap:nth-child(odd) {
-                .post-img { order: -1; }
+        // exceot for double landscape width posts:
+        .doublelandscape-parent {
+            &.left, &.right, &.center { 
+                margin: 0 auto;
+                position: initial;
             }
-            .post-img-wrap:nth-child(2) {
-                align-self: flex-end;
-            }
-        }
-        .posts-6 {
-            justify-content: space-between;
         }
     }
     .gallery-timeline:last-of-type {

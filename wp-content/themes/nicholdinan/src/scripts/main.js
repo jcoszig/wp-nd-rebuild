@@ -8,15 +8,6 @@
     $(window).load(function() {
         // Classes and functions:
 
-        // Trigger only once user has stopped resizing screen.
-        let resizeTimer;
-        $(window).on('resize', function(e) {
-            clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            //functions here       
-            }, 250);
-        });
-
         // srcset for background images
         class ResponsiveBackgroundImage {
             constructor(element) {
@@ -37,6 +28,12 @@
                     this.element.style.backgroundImage = 'url("' + this.src + '")';
                 }
             }
+        }
+
+        // Gallery page function:
+        function resizeBorderHeight(){
+            const postImgWrap = document.querySelectorAll('.post-img-wrap');
+            
         }
 
 /*---------------------------------------------------------------------------*/
@@ -144,14 +141,56 @@
 /*---------------------------------------------------------------------------*/
         if(currentPage.classList.contains('page-template-gallery') ){
             
+            // Trigger only once user has stopped resizing screen.
+            let resizeTimer;
+            $(window).on('resize', function(e) {
+                clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                resizeBorderHeight();      
+                }, 250);
+            });
+
             // Add dynamic class referring to how many posts found.
             const imgsSection = document.querySelectorAll('.images-section');
             const postImgWrap = document.querySelectorAll('.post-img-wrap');
+            const portraitWrap = document.querySelectorAll('.portrait-parent h2');
 
-            imgsSection.forEach( (section)=>{
+            // How many posts in each year
+            imgsSection.forEach( (section) => {
                 let postCount = section.childElementCount;
-                console.log( `section = ${section}. imgCount = ${postCount}` );
+                // console.log( `section = ${section}. imgCount = ${postCount}` );
                 section.classList.add(`posts-${postCount}`)
+            });
+
+            // Positioning for images
+            let imgCount = 0;
+            let left = 1;
+            let right = 2;
+            let center = 3;
+
+            postImgWrap.forEach( (img) => {
+                imgCount++;
+
+                if (imgCount == left){
+                    img.classList.add('left');
+                    left += 3;
+                } else if (imgCount == right){
+                    img.classList.add('right');
+                    right += 3;
+                } else if (imgCount == center){
+                    img.classList.add('center');
+                    center += 3;
+                }
+                // count number of posts
+                // img.classList.add(`image-${imgCount}`);
+            });
+
+            // Styling for long portrait images with long titles
+            portraitWrap.forEach( (title) => {
+                let titleLength = title.innerText.length;
+                if(titleLength > 11){
+                    title.parentNode.classList.add('horizontal-text');
+                }
             });
         }; 
 

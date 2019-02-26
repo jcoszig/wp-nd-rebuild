@@ -32,7 +32,6 @@ while($currentYear >= 2015){ ?>
         ),
     ) ); 
 
-    // if ( $the_query->have_posts() ) : 
         $count = 0;
         while ( $the_query->have_posts() ) : $the_query->the_post(); 
             $count++;

@@ -106,21 +106,14 @@ button:focus {
 }
 
 // Images
-// .landscape, .portrait {
-.landscape {
+img {
 	width: 100%;
 	height: auto;
 }
 
-// duplicate of landscape
-.doublelandscape {
-	width: 100%;
+.square {
 	height: auto;
-}
-
-.portrait {
-    min-height: 100%;
-    width: 100%;
+	width: 100%;
 }
 
 // Repeatable layout

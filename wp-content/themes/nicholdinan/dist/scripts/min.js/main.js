@@ -8,34 +8,31 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   e(document).ready(function () {
     console.log("Site created by James Oxley-Shaw.");
   }), e(window).load(function () {
-    var t = void 0;e(window).on("resize", function (e) {
-      clearTimeout(t), t = setTimeout(function () {}, 250);
-    });
-    var o = function () {
-      function o(e) {
+    var t = function () {
+      function t(e) {
         var _this = this;
 
-        _classCallCheck(this, o);
+        _classCallCheck(this, t);
 
         this.element = e, this.img = e.querySelector("img"), this.src = "", this.img.addEventListener("load", function () {
           _this.update();
         }), this.img.complete && this.update();
       }
 
-      _createClass(o, [{
+      _createClass(t, [{
         key: "update",
         value: function update() {
           var e = void 0 !== this.img.currentSrc ? this.img.currentSrc : this.img.src;this.src !== e && (this.src = e, this.element.style.backgroundImage = 'url("' + this.src + '")');
         }
       }]);
 
-      return o;
+      return t;
     }();
 
-    var s = document.querySelector("body");var i = document.querySelectorAll("[data-responsive-background-image]");for (var _e = 0; _e < i.length; _e++) {
-      new o(i[_e]), console.log("responsive image added");
-    }var n = document.querySelector(".menu-item-type-custom a"),
-        c = document.querySelector(".menu-item-type-custom img");var a = "nicholdinan.co.uk" == window.location.hostname ? window.location.origin : window.location.origin + "/nicholdinan";if (n.href = "https://www.instagram.com/nichol.dinan", c.src = a + "/wp-content/themes/nicholdinan/images/instagram-logo.svg", s.classList.contains("home")) {
+    var o = document.querySelector("body");var s = document.querySelectorAll("[data-responsive-background-image]");for (var _e = 0; _e < s.length; _e++) {
+      new t(s[_e]), console.log("responsive image added");
+    }var i = document.querySelector(".menu-item-type-custom a"),
+        n = document.querySelector(".menu-item-type-custom img");var c = "nicholdinan.co.uk" == window.location.hostname ? window.location.origin : window.location.origin + "/nicholdinan";if (i.href = "https://www.instagram.com/nichol.dinan", n.src = c + "/wp-content/themes/nicholdinan/images/instagram-logo.svg", o.classList.contains("home")) {
       var _e2 = document.querySelector(".centre-text"),
           _t = document.querySelector(".intro-foreground"),
           _o = document.querySelectorAll(".landingPage-slider li"),
@@ -51,7 +48,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           e.classList.add("loaded"), e.style.animation = "fade" + e.dataset.index + " " + e.dataset.speed + "ms infinite ";
         }, _i);
       });
-    }if (s.classList.contains("page-template-about")) {
+    }if (o.classList.contains("page-template-about")) {
       var _e3 = document.querySelector(".form-message .wpcf7-textarea"),
           _t2 = document.querySelector(".form-message");document.querySelector(".wpcf7-form");_e3.addEventListener("focus", function () {
         _e3.classList.contains("focused") || "" != _e3.value.trim() || (_e3.classList.add("focused"), _t2.classList.add("focused"), setTimeout(function () {
@@ -60,9 +57,22 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }), _e3.addEventListener("blur", function () {
         "" == _e3.value.trim() && (_e3.classList.remove("focused"), _t2.classList.remove("focused"), _e3.style.height = "3rem");
       });
-    }if (s.classList.contains("page-template-gallery")) {
-      var _e4 = document.querySelectorAll(".images-section");document.querySelectorAll(".post-img-wrap");_e4.forEach(function (e) {
-        var t = e.childElementCount;console.log("section = " + e + ". imgCount = " + t), e.classList.add("posts-" + t);
+    }if (o.classList.contains("page-template-gallery")) {
+      var _t3 = void 0;e(window).on("resize", function (e) {
+        clearTimeout(_t3), _t3 = setTimeout(function () {
+          document.querySelectorAll(".post-img-wrap");
+        }, 250);
+      });var _o2 = document.querySelectorAll(".images-section"),
+          _s2 = document.querySelectorAll(".post-img-wrap"),
+          _i2 = document.querySelectorAll(".portrait-parent h2");_o2.forEach(function (e) {
+        var t = e.childElementCount;e.classList.add("posts-" + t);
+      });var _n = 0,
+          _c = 1,
+          a = 2,
+          l = 3;_s2.forEach(function (e) {
+        ++_n == _c ? (e.classList.add("left"), _c += 3) : _n == a ? (e.classList.add("right"), a += 3) : _n == l && (e.classList.add("center"), l += 3);
+      }), _i2.forEach(function (e) {
+        e.innerText.length > 11 && e.parentNode.classList.add("horizontal-text");
       });
     }
   });

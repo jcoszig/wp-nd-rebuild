@@ -149,6 +149,7 @@ function prefix_meta_boxes( $meta_boxes ) {
                 'options' => array(
                     'landscape'         => 'landscape',
                     'portrait'          => 'Portrait',
+                    'square'          => 'Square',
                     'doublelandscape'   => 'Double Landscape',
                 ),
             ),
