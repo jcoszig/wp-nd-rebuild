@@ -30,9 +30,17 @@
             }
         }
 
-        // Gallery page function:
+        // Gallery page function. Resize all portrait image borders.
         function resizeBorderHeight(){
-            const postImgWrap = document.querySelectorAll('.post-img-wrap');
+            const portraitWrap = document.querySelectorAll('.portrait-wrap');
+            
+            for(let i = 0; i < portraitWrap.length; i++){
+                let border = portraitWrap[i].firstElementChild.firstElementChild;
+                let img = portraitWrap[i].children[1];
+                let imgHeight = img.clientHeight;
+                
+                border.style.height = `${imgHeight}px`;
+            }
             
         }
 

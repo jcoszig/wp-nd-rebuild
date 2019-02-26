@@ -60,7 +60,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }if (o.classList.contains("page-template-gallery")) {
       var _t3 = void 0;e(window).on("resize", function (e) {
         clearTimeout(_t3), _t3 = setTimeout(function () {
-          document.querySelectorAll(".post-img-wrap");
+          !function () {
+            var e = document.querySelectorAll(".portrait-wrap");for (var _t4 = 0; _t4 < e.length; _t4++) {
+              var _o3 = e[_t4].firstElementChild.firstElementChild,
+                  _s3 = e[_t4].children[1].clientHeight;_o3.style.height = _s3 + "px";
+            }
+          }();
         }, 250);
       });var _o2 = document.querySelectorAll(".images-section"),
           _s2 = document.querySelectorAll(".post-img-wrap"),
