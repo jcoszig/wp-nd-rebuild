@@ -78,6 +78,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         ++_n == _c ? (e.classList.add("left"), _c += 3) : _n == a ? (e.classList.add("right"), a += 3) : _n == l && (e.classList.add("center"), l += 3);
       }), _i2.forEach(function (e) {
         e.innerText.length > 11 && e.parentNode.classList.add("horizontal-text");
+      }), document.querySelectorAll(".post-img a").forEach(function (e) {
+        e.addEventListener("click", function (t) {
+          var o = e.getAttribute("href");t.preventDefault(), alert("link clicked: ", o), e.parentNode.parentNode.classList.add("animate"), window.location.href = o;
+        });
       });
     }
   });

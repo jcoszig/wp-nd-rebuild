@@ -1,0 +1,31 @@
+/* Note margins are based off of:
+    63% landscape image width (63 + (18.5 * 2) = 100 )
+    51% portrait image width (51 + (24.5 * 2) = 100 )
+    test setting margins as variables and using calc() to output margins...
+*/
+
+@keyframes leftToCentreLandscape {
+    from { margin-left: 0%; }
+    to { margin-left: 18.5%; }
+}
+
+@keyframes leftToCentrePortrait {
+    from { margin-left: 0%; }
+    to { margin-left: 24.5%; }
+}
+
+// Already centred images
+@keyframes scaleUp {
+    0% { background: yellow; }
+    100% { background: green; }
+}
+
+@keyframes rightToCentreLandscape {
+    from { margin-right: 37%; }
+    to { margin-right: 18.5%; }
+}
+
+@keyframes rightToCentrePortrait {
+    from { margin-right: 49%; }
+    to { margin-right: 24.5%; }
+}

@@ -200,6 +200,21 @@
                     title.parentNode.classList.add('horizontal-text');
                 }
             });
+
+            // prevent default re-direct to fire animation before proceeding
+            const borders = document.querySelectorAll('.post-img a');
+
+            borders.forEach( (border) => {
+                border.addEventListener('click', function(e){
+                    const target = border.getAttribute('href');
+                    e.preventDefault();
+                    alert('link clicked: ', target);
+                    // Add class to containing element
+                    border.parentNode.parentNode.classList.add('animate');
+                    window.location.href = target;
+                });
+            }); 
+
         }; 
 
     });

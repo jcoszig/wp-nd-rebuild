@@ -1,9 +1,3 @@
-// Local variables
-$year-font-height: 3.44rem;
-$border-colour: darkred;
-$images-section-margin: 3rem;
-$image-title-height: 83px; // reference variable, not used in styling.
-
 // Styling
 body.page-template-gallery {
     .gallery-timeline {
@@ -57,7 +51,7 @@ body.page-template-gallery {
                         height: 100%;
                         width: 100%;
                         position: absolute;
-                        transition: box-shadow 300ms ease;
+                        transition: box-shadow 250ms ease;
                         &:hover { box-shadow: inset 0 0 0 7px $border-colour; }
                     }
                 } 
@@ -109,21 +103,45 @@ body.page-template-gallery {
             }
             .square-parent {
                 .square-wrap {
-                    width: calc(100vh - #{ $images-section-margin } - #{ $image-title-height } );
+                    max-width: calc(100vh - #{ $images-section-margin } - #{ $image-title-height } );
                 }
             }
             .doublelandscape-parent { width: 100%; }
         }
         // Positioning pattern
-        .left { margin-right: auto; }
-        .right { margin-left: auto; }
+        .left { 
+            &.portrait-parent.animate { 
+                animation: leftToCentrePortrait 300ms linear;
+                margin-left: 24.5%;
+            }
+            &.landscape-parent.animate { 
+                animation: leftToCentreLandscape 300ms linear;
+                margin-left: 18.5%;
+            }
+        }
+        .right { 
+            &.portrait-parent {
+                margin-left: 49%;
+                &.animate { 
+                    animation: rightToCentrePortrait 300ms linear;
+                    margin-right: 24.5%;
+                }
+            }
+            &.landscape-parent {
+                margin-left: 37%;
+                &.animate { 
+                    animation: rightToCentreLandscape 300ms linear;
+                    margin-right: 18.5%;
+                }
+            }
+        }
         .center { 
             margin: 0 auto;
             position: relative;
             right: 10%; // center image opposed to entire element.
         }
-        // exceot for double landscape width posts:
-        .doublelandscape-parent {
+        // except for double landscape width and square posts:
+        .doublelandscape-parent, .square-parent {
             &.left, &.right, &.center { 
                 margin: 0 auto;
                 position: initial;
